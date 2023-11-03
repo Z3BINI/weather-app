@@ -1,37 +1,69 @@
+//Cache DOM
 const searchBtn = document.querySelector('button')
 const searchIpt = document.querySelector('input')
 
 
-const getWeatherData = async (searchTerm) => {
+const controller = {
 
-    try {
+    getWeatherData: async (searchTerm) => {
+
+        try {
+        
+            if (!searchTerm) searchTerm = 'auto:ip'
     
-        if (!searchTerm) searchTerm = 'auto:ip'
+            const weatherPromise = await fetch('https://api.weatherapi.com/v1/forecast.json?key=fc12493872cf47e9b0c132053233110&days=3&q=' + searchTerm, { mode: 'cors' })
+            const weatherData = await weatherPromise.json()
+    
+            if (weatherData.error) {
+            
+                controller.handleError(weatherData.error.code)
+            
+            } else {
+    
+                view.display(weatherData)
+            
+            }
+            
+        } catch(error) {
+    
+            console.log(error)
+    
+        }
+    
+    },
 
-        const weatherPromise = await fetch('https://api.weatherapi.com/v1/forecast.json?key=fc12493872cf47e9b0c132053233110&days=3&q=' + searchTerm, 
-        { mode: 'cors' })
-        
-        const weatherData = await weatherPromise.json()
+    handleError: (errorCode) => {
 
-        if (weatherData.error) handleError(weatherData.error.code)
-
-        return weatherData
-        
-    } catch(error) {
-
-        console.log(error)
-
+        switch (errorCode) {
+    
+            case 1006:
+    
+                controller.getWeatherData('')
+                break
+            
+            default:
+    
+                console.log("I don't know what to do!! error: " + errorCode)
+                controller.getWeatherData('')
+                break
+    
+        }
+    
     }
 
 }
 
-const handleError = (errorCode) => {
+const view = {
 
-    console.log('Fixing ' + errorCode)
+    display: (data) => {
 
+        console.log(data);
+
+    }
+    
 }
 
-searchBtn.addEventListener('click', () => getWeatherData(searchIpt.value))
+searchBtn.addEventListener('click', () => controller.getWeatherData(searchIpt.value))
 
 
 
