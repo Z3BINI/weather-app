@@ -1,3 +1,5 @@
+import makeCurrentDom from './makeCurrentDom.js'
+
 //Cache DOM
 const searchBtn = document.querySelector('button')
 const searchIpt = document.querySelector('input')
@@ -12,7 +14,7 @@ const controller = {
             if (weatherData.error) {
                 controller.handleError(weatherData.error.code)
             } else {
-                view.display(weatherData.current, weatherData.forecast)
+                makeCurrentDom(weatherData.current)
             }  
         } catch(error) {
             console.log(error)
