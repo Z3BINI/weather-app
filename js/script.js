@@ -20,7 +20,7 @@ const controller = {
             
             } else {
     
-                view.display(weatherData)
+                view.display(weatherData.current, weatherData.forecast)
             
             }
             
@@ -57,9 +57,9 @@ const controller = {
 
 const view = {
 
-    display: (data) => {
+    display: (current, forecast) => {
 
-        console.log(data);
+        console.log(current, forecast);
 
     }
 
