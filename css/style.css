@@ -27,5 +27,16 @@ body {
 .main-data-container {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 64px;
+}
+
+.left-container, .right-container {
+    width: 40%;
+}
+
+.data-pair {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
