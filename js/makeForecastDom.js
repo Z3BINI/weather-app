@@ -14,11 +14,11 @@ export default function(forecastArr) {
         //Items
         const date = document.createElement('h2')
         const weatherIcon = document.createElement('img')
-        const conditionText = document.createElement('p')
-        const avgTemp = document.createElement('p')
-        const chanceRain = document.createElement('p')
-        const humidity = document.createElement('p')
-        const uv = document.createElement('p')
+        const conditionText = document.createElement('h3')
+        const avgTemp = document.createElement('h3')
+        const chanceRain = document.createElement('h3')
+        const humidity = document.createElement('h3')
+        const uv = document.createElement('h3')
         //labels
         const avgTempLbl = document.createElement('p')
         const chanceRainLbl = document.createElement('p')
