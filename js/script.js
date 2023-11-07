@@ -4,7 +4,8 @@ import makeForecastDom from './makeForecastDom.js'
 //Cache DOM
 const searchBtn = document.querySelector('button')
 const searchIpt = document.querySelector('input')
-const body = document.querySelector('.content')
+const body = document.querySelector('body')
+const wrapper = document.querySelector('.content')
 
 const controller = {
     getWeatherData: async (userSearch) => {
@@ -17,6 +18,7 @@ const controller = {
                 controller.handleError(weatherData.error.code)
             } else {
                 view.clearDom() 
+                view.decideBackground(weatherData.current.is_day)
                 view.display(view.makeDom(weatherData))
             }  
         } catch(error) {
@@ -41,15 +43,16 @@ const controller = {
 
 const view = {
     display: (weatherDataObject) => {
-        body.appendChild(weatherDataObject.currentWeatherCard)
-        body.appendChild(weatherDataObject.forecastWeatherList)
+        wrapper.appendChild(weatherDataObject.currentWeatherCard)
+        wrapper.appendChild(weatherDataObject.forecastWeatherList)
     },
     makeDom: (weatherData) => {
         const currentWeatherCard = makeCurrentDom(weatherData.current, weatherData.location)
         const forecastWeatherList = makeForecastDom(weatherData.forecast)
         return {currentWeatherCard, forecastWeatherList}
     },
-    clearDom: () => body.innerHTML = ''
+    clearDom: () => wrapper.innerHTML = '',
+    decideBackground: (isDay) => (isDay) ? body.style.backgroundImage = 'url("./img/sunny.jpg")' : body.style.backgroundImage = 'url("./img/dark.jpg")'
 }
 
 searchBtn.addEventListener('click', () => controller.getWeatherData(searchIpt.value))
