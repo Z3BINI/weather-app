@@ -11,6 +11,10 @@ body {
     align-items: center;
 }
 
+p {
+    font-weight: 400;
+}
+
 .content {
     width: 90%;
 
