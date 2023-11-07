@@ -14,17 +14,17 @@ export default function(currentWeather, location) {
     
     //Items
     const countryCity = document.createElement('h2')
-    const localTime = document.createElement('p')
+    const localTime = document.createElement('h3')
     //Left
     const weatherIcon = document.createElement('img')
-    const conditionText = document.createElement('p')
+    const conditionText = document.createElement('h3')
     const currentTemp = document.createElement('h1')
-    const feelsLikeTemp = document.createElement('p')
+    const feelsLikeTemp = document.createElement('h3')
     //Right
-    const windDir = document.createElement('p')
-    const windSpeedKmh = document.createElement('p')
-    const uv = document.createElement('p')
-    const humidity = document.createElement('p')
+    const windDir = document.createElement('h3')
+    const windSpeedKmh = document.createElement('h3')
+    const uv = document.createElement('h3')
+    const humidity = document.createElement('h3')
     //Labels
     //Left
     const currentTempLbl = document.createElement('p')
