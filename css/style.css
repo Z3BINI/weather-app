@@ -4,7 +4,10 @@
 }
 
 body {
-    background-color: bisque;
+    background-image: url(./../img/load.jpg);
+    background-size: cover;
+
+    color:white;
 
     display: flex;
     flex-direction: column;
@@ -20,6 +23,8 @@ button {
 }
 
 .content {
+    color: black;
+
     width: 90%;
 
     border-radius: 15px;
@@ -85,3 +90,4 @@ button {
     justify-content: space-between;
     align-items: center;
 }
+
