@@ -39,6 +39,12 @@ p {
     width: 40%;
 }
 
+.left-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .data-pair {
     display: flex;
     justify-content: space-between;
