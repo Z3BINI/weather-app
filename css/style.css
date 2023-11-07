@@ -70,3 +70,10 @@ p {
     display: flex;
     justify-content: space-evenly;
 }
+
+.list-data-pair {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
