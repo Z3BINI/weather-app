@@ -1,8 +1,10 @@
 import makeCurrentDom from './makeCurrentDom.js'
+import makeForecastDom from './makeForecastDom.js'
 
 //Cache DOM
 const searchBtn = document.querySelector('button')
 const searchIpt = document.querySelector('input')
+const body = document.querySelector('.content')
 
 const controller = {
     getWeatherData: async (userSearch) => {
@@ -14,7 +16,8 @@ const controller = {
             if (weatherData.error) {
                 controller.handleError(weatherData.error.code)
             } else {
-                makeCurrentDom(weatherData.current)
+                view.clearDom() 
+                view.display(view.makeDom(weatherData))
             }  
         } catch(error) {
             console.log(error)
@@ -23,7 +26,7 @@ const controller = {
 
     handleError: (errorCode) => {
         switch (errorCode) {
-            case 1006:
+            case 1006: //Location not found, load ip defined location
                 controller.getWeatherData('')
                 break
             default:
@@ -37,14 +40,16 @@ const controller = {
 }
 
 const view = {
-    display: (current, forecast) => {
-        console.log(current, forecast);
-    }
+    display: (weatherDataObject) => {
+        body.appendChild(weatherDataObject.currentWeatherCard)
+        body.appendChild(weatherDataObject.forecastWeatherList)
+    },
+    makeDom: (weatherData) => {
+        const currentWeatherCard = makeCurrentDom(weatherData.current, weatherData.location)
+        const forecastWeatherList = makeForecastDom(weatherData.forecast)
+        return {currentWeatherCard, forecastWeatherList}
+    },
+    clearDom: () => body.innerHTML = ''
 }
 
 searchBtn.addEventListener('click', () => controller.getWeatherData(searchIpt.value))
-
-
-
-
-
